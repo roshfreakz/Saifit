@@ -12,6 +12,11 @@
   <link href="css/main.css" rel="stylesheet">
   <link href="css/fontawesome.min.css" rel="stylesheet">
   <link href="css/custom.css" rel="stylesheet">
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-notify.min.js"></script>
+  <script src="js/main.js"></script>
   <style>
     html,
     body {
@@ -46,24 +51,19 @@
           <div class="card-body">
             <div class="text-center">
               <h1 class="text-primary mb-2">SAIFIT</h1>
-              <h1 class="h4 text-gray-900 mb-2">Welcome Back!</h1>
+              <h1 class="h4 text-gray-900 mb-2">Login</h1>
             </div>
-            <form id="formLogin">
+            <form id="formLogin" action="index.html" method="POST">
               <div class="form-group">
-                <label class="label-control" for="inpLogEmail">Email</label>
-                <input type="email" class="form-control" id="inpLogEmail" name="inpLogEmail" placeholder="Your Email" required>
+                <label class="label-control">Email</label>
+                <input type="email" class="form-control" name="user_id" required>
               </div>
               <div class="form-group">
-                <label class="label-control" for="inpLogPassword">Password</label>
-                <input type="password" class="form-control" id="inpLogPassword" name="inpLogPassword" placeholder="Your Password" required>
+                <label class="label-control">Password</label>
+                <input type="password" class="form-control" name="password" required>
               </div>
-              <!-- <div class="form-group">
-                <div class="custom-control custom-checkbox small">
-                  <input type="checkbox" class="custom-control-input" id="customCheck">
-                  <label class="custom-control-label" for="customCheck">Remember Me</label>
-                </div>
-              </div> -->
-              <button type="submit" class="btn btn-primary btn-user btn-block my-4"> Login <i class="fas fa-sign-in-alt"></i> </button>
+              <button type="submit" class="btn btn-primary btn-user btn-block my-4"> Login <i
+                  class="fas fa-sign-in-alt"></i> </button>
             </form>
             <hr>
             <div class="text-center">
@@ -85,23 +85,41 @@
               <h1 class="text-primary mb-2">SAIFIT</h1>
               <h1 class="h4 text-gray-900 mb-2">Create an Account!</h1>
             </div>
-            <form id="divRegister">
+            <form id="formRegister">
               <div class="form-group">
-                <label class="label-control" for="inpRegFullName">Full Name</label>
-                <input type="text" class="form-control" id="inpRegFullName" name="inpRegFullName" placeholder="Your Full Name" required>
+                <label class="label-control">First Name</label>
+                <input type="text" class="form-control" name="first_name" required>
               </div>
               <div class="form-group">
-                <label class="label-control" for="inpRegEmail">Email</label>
-                <input type="email" class="form-control" id="inpRegEmail" name="inpRegEmail" placeholder="Your Email Address" required>
+                <label class="label-control">Last Name</label>
+                <input type="text" class="form-control" name="last_name" required>
               </div>
               <div class="form-group">
-                <label class="label-control" for="inpRegPassword">Password</label>
-                <input type="password" class="form-control" id="inpRegPassword" name="inpRegPassword" placeholder="Strong Password" required autocomplete="new-password">
+                <label class="label-control">Email</label>
+                <input type="email" class="form-control" name="email" required>
               </div>
               <div class="form-group">
-                <label class="label-control" for="inpRegCPassword">Confirm Password</label>
-                <input type="password" class="form-control" id="inpRegCPassword" name="inpRegCPassword" placeholder="Repeat Password" required>
+                <label class="label-control">Mobile</label>
+                <input type="text" class="form-control" name="mobile" required>
               </div>
+              <div class="form-group">
+                <label class="label-control">Gender</label>
+                <select class="form-control" name="gender">
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="label-control">Date of Birth</label>
+                <input type="date" class="form-control" name="dob" required>
+              </div>
+              <div class="form-group">
+                <label class="label-control">Address</label>
+                <textarea class="form-control" name="address" required></textarea>
+              </div>
+              <input type="hidden" name="age" value="20">
+              <input type="hidden" name="device_id" value="0000">
+              <input type="hidden" name="os" value="Android">
               <button type="submit" class="btn btn-primary btn-user btn-block my-4">
                 Register <i class="fas fa-user-edit"></i>
               </button>
@@ -120,13 +138,14 @@
         <div class="card shadow my-5">
           <div class="card-body">
             <div class="text-center">
-            <h1 class="text-primary mb-2">SAIFIT</h1>
+              <h1 class="text-primary mb-2">SAIFIT</h1>
               <h1 class="h4 text-gray-900 mb-2">Forgot Password?</h1>
             </div>
             <form id="divForgot">
               <div class="form-group">
                 <label class="label-control" for="inpForEmail">Email</label>
-                <input type="email" class="form-control" id="inpForEmail" name="inpForEmail" placeholder="Your Email" required>
+                <input type="email" class="form-control" id="inpForEmail" name="inpForEmail" placeholder="Your Email"
+                  required>
               </div>
               <button type="submit" class="btn btn-primary btn-user btn-block my-4">
                 Submit <i class="fas fa-paper-plane"></i>
@@ -143,19 +162,15 @@
     </div>
   </div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+  <div class="loader" id="loader">
+    <div class="overlay"></div>
+    <i class="fa fa-spinner fa-pulse fa-3x text-primary"></i>
+  </div>
+
 
   <script>
-    $(function() {
-      // console.log(window.location.hash.substr(1))
-      if (window.location.hash.substr(1) == "register") {
-        ToggleScreen('register');
-      }
-    });
-
     function ToggleScreen(arg) {
+      $('.form-control').val('');
       $('#divRegister').hide();
       $('#divForgot').hide();
       $('#divLogin').hide();
@@ -166,6 +181,75 @@
       } else {
         $('#divLogin').show();
       }
+    }
+
+    $(function () {
+
+      sessionStorage.clear();
+
+      HideLoadingFn();
+
+      $('#formRegister').on('submit', function (e) {
+        e.preventDefault();
+        var formData = $(this).serializeArray();
+        AddRegister(formData);
+      })
+
+      $('#formLogin').on('submit', function (e) {
+        e.preventDefault();
+        var formData = $(this).serializeArray();
+        CheckLogin(formData);
+      })
+    });
+
+    function CheckLogin(formData) {
+      return $.ajax({
+          url: 'http://35.193.31.55/api/v1/user/login',
+          method: 'POST',
+          dataType: 'json',
+          data: formData,
+          beforeSend: ShowLoadingFn
+        })
+        .done(function (data) {
+          showNotify(data.result.message, 'success');
+          console.log(data.result.data);
+          var userData = data.result.data;
+          window.sessionStorage;          
+          sessionStorage.setItem("userData", JSON.stringify(userData));
+          if(userData.is_first_time_login)
+          window.location.href = "index.html";
+          else
+          window.location.href = "home.html";
+        })
+        .always(function () {
+          HideLoadingFn();
+        })
+        .fail(function (result) {
+          var err = JSON.parse(result.responseText);
+          showNotify(err.result.message, 'danger');
+        });
+    }
+
+
+    function AddRegister(formData) {
+      return $.ajax({
+          url: 'http://35.193.31.55/api/v1/user/register',
+          method: 'POST',
+          dataType: 'json',
+          data: formData,
+          beforeSend: ShowLoadingFn
+        })
+        .done(function (data) {
+          showNotify(data.result.message, 'success');
+          ToggleScreen('login');
+        })
+        .always(function () {
+          HideLoadingFn();
+        })
+        .fail(function (result) {
+          var err = JSON.parse(result.responseText);
+          showNotify(err.result.message, 'danger');
+        });
     }
   </script>
 </body>

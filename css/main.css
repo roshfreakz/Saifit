@@ -9765,18 +9765,16 @@ html {
 
 body {
   height: 100%;
+  background-color: #f8f9fc;
+
 }
 
 a:focus {
   outline: none;
 }
 
-#wrapper {
-  display: flex;
-}
 
 #wrapper #content-wrapper {
-  background-color: #f8f9fc;
   width: 100%;
   overflow-x: hidden;
 }
