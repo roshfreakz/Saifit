@@ -2,7 +2,17 @@
 <html lang="en">
 
 <head>
-  <?php require_once("_header.html"); ?>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>SAIFIT - Login</title>
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/fontawesome.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-notify.min.js"></script>
+  <script src="js/main.js"></script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -175,6 +185,7 @@
           window.sessionStorage;
           sessionStorage.setItem("userData", JSON.stringify(userData));
           window.location.href = "home.php";
+      
         })
         .always(function() {
           HideLoadingFn();

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand bg-white topbar static-top shadow">
+<nav class="navbar navbar-expand bg-white topbar fixed-top shadow">
     <div>
         <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
         <p class="m-0">Your Sadhana Tracker </p>
@@ -10,7 +10,11 @@
                 <i class="fa fa-user-circle fa-2x"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-
+                <a class="dropdown-item">
+                    <script>
+                        document.write(userData.first_name);
+                    </script>
+                </a>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
