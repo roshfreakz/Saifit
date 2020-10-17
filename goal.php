@@ -4,44 +4,68 @@
 <head>
     <?php require_once("_header.html"); ?>
     <?php require_once("_session.html") ?>
+    <script>
+        var objday = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+        ];
+        var mdate = new Date();
+        var dateString = mdate.getUTCFullYear() + "-" + (mdate.getUTCMonth() + 1) + "-" + mdate.getUTCDate();
+        var daystring = objday[mdate.getUTCDay()];
+    </script>
 </head>
 
 <body>
     <div id="wrapper">
         <div id="content-wrapper" class="content-wrapper">
             <?php require_once("_navbar.html"); ?>
-
             <div id="content" class="content">
-
-
                 <div class="container-fluid">
                     <div class="head-title my-2">
                         <button class="btn btn-primary mr-3"><i class="fa fa-chart-line"></i></button>
                         <h1 class="h5 mb-0 text-gray-800">Goals</h1>
                     </div>
-                    <div class="row" id="divSadhana">
+                    <p>Sairam! Track your progress here</p>
+                    <button class="btn btn-outline-warning">
+                        <script>
+                            document.write(dateString);
+                        </script>
+                    </button>
+                    <button class="btn btn-outline-info">
+                        <script>
+                            document.write(daystring);
+                        </script>
+                    </button>                  
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card border-primary shadow h-100">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                        <img class="img-fluid" src="img/wining.gif" alt="">
+
+                                            <div class="font-weight-bold text-center mt-2" >
+                                            Your Total Score is: <span class="text-success font-weight-bold h3" id="lblscore"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
                         <div class="col">
-                            Sunday <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-                            </div>
-                            Monday <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
-                            </div>
-                            Tuesday <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
-                            </div>
-                            Wednesday <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
-                            </div>
-                            Thursday <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
-                            </div>
-                            Friday <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-                            </div>
-                            Saturday <div class="progress">
+                            <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -52,11 +76,31 @@
 
     <script>
         $(function() {
-
-            $('#navgoal').removeClass('btn-primary').addClass('btn-warning');
-
-            HideLoadingFn();
+            GetRank();
+            $('#navhome').removeClass('btn-primary').addClass('btn-warning');
         });
+
+        function GetRank() {
+            $.ajax({
+                url: domain + 'api/v1/user-sadhana-track/rank',
+                method: 'GET',
+                dataType: 'json',
+                data: {
+                    user_id: userData.user_id,
+                    track_date: dateString
+                },
+                beforeSend: ShowLoadingFn
+            }).done(function(result) {
+                var jsonData = result.result.data;
+                console.log(jsonData)
+                $('#lblscore').text(jsonData.totalRank);
+            }).always(function() {
+                HideLoadingFn();
+            }).fail(function(result) {
+                var err = JSON.parse(result.responseText);
+                showNotify(err.result.message, 'danger');
+            });
+        }
     </script>
 </body>
 

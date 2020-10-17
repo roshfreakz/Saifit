@@ -17,7 +17,7 @@
                         <button class="btn btn-primary mr-3"><i class="fa fa-home"></i></button>
                         <h1 class="h5 mb-0 text-gray-800">Home</h1>
                     </div>
-                    <p>Sairam! Click on the Sadhanas to Complete </p>
+                    <p>Sairam! Click on the Sadhanas to Complete </p>                  
                     <div class="row" id="divSadhana">
                         <div class="col">
                             <p>No Sadhanas Selected! <br> Please select your sadhanas from the profile tab!</p>
@@ -47,7 +47,6 @@
                 var jsonSadhana = result.result.data;
                 if (jsonSadhana.length > 0) {
                     BindSadhana(jsonSadhana);
-                    $('#navhome').prop('disabled', false);
                 } else {
                     location.href = "profile.php";
                 }

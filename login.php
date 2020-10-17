@@ -184,7 +184,7 @@
           var userData = data.result.data;
           window.sessionStorage;
           sessionStorage.setItem("userData", JSON.stringify(userData));
-          window.location.href = "home.php";
+          location.href = "home.php";
       
         })
         .always(function() {
