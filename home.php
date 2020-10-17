@@ -2,22 +2,58 @@
 <html lang="en">
 
 <head>
-    <?php require_once("_header.html") ?>
-    <?php require_once("_session.html") ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SAIFIT</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/fontawesome.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-notify.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        var userData = JSON.parse(sessionStorage.getItem("userData"));
+        if (userData == null) location.href = "login.php";
+    </script>
 </head>
 
 <body>
     <div id="wrapper">
         <div id="content-wrapper" class="content-wrapper">
-            <?php require_once("_navbar.html"); ?>
-
+            <nav class="navbar navbar-expand bg-white topbar fixed-top shadow">
+                <div>
+                    <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
+                    <p class="m-0">Your Sadhana Tracker </p>
+                </div>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-circle fa-2x"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item">
+                                <script>
+                                    document.write(userData.first_name);
+                                </script>
+                            </a>
+                            <hr>
+                            <a class="dropdown-item" href="login.php">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
             <div id="content" class="content">
                 <div class="container-fluid">
                     <div class="head-title my-2">
                         <button class="btn btn-primary mr-3"><i class="fa fa-home"></i></button>
                         <h1 class="h5 mb-0 text-gray-800">Home</h1>
                     </div>
-                    <p>Sairam! Click on the Sadhanas to Complete </p>                  
+                    <p>Sairam! Click on the Sadhanas to Complete </p>
                     <div class="row" id="divSadhana">
                         <div class="col">
                             <p>No Sadhanas Selected! <br> Please select your sadhanas from the profile tab!</p>
@@ -27,8 +63,26 @@
                 </div>
             </div>
         </div>
-        <?php require_once("_footer.html"); ?>
+        <footer>
+            <div class="bottom-bar shadow">
+                <div class="row">
+                    <div class="col text-center">
+                        <button class="btn btn-primary btn-block" id="navprofile" onclick="location.href='profile.php'">Profile</button>
+                    </div>
+                    <div class="col text-center">
+                        <button class="btn btn-primary btn-block" id="navhome" onclick="location.href='home.php'">Home</button>
+                    </div>
+                    <div class="col text-center">
+                        <button class="btn btn-primary btn-block" id="navgoal" onclick="location.href='goal.php'">Goals</button>
+                    </div>
+                </div>
+            </div>
 
+            <div class="loader" id="loader">
+                <div class="overlay"></div>
+                <i class="fa fa-spinner fa-pulse fa-3x text-primary"></i>
+            </div>
+        </footer>
     </div>
 
     <script>
@@ -89,11 +143,10 @@
                 track_date: dateString
             }
 
-            if ($(arg).hasClass('active')){
+            if ($(arg).hasClass('active')) {
                 $(arg).removeClass('active');
                 DoUnTrackSadhana(objarr);
-            } 
-            else {
+            } else {
                 $(arg).addClass('active');
                 DoTrackSadhana(objarr);
             }
@@ -139,7 +192,7 @@
             });
         }
 
-        
+
         function DoCompleteSadhana() {
             var mdate = new Date();
             var dateString = mdate.getUTCFullYear() + "-" + (mdate.getUTCMonth() + 1) + "-" + mdate.getUTCDate();
@@ -165,7 +218,6 @@
                 showNotify(err.result.message, 'danger');
             });
         }
-
     </script>
 </body>
 

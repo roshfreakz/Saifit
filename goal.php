@@ -2,9 +2,21 @@
 <html lang="en">
 
 <head>
-    <?php require_once("_header.html"); ?>
-    <?php require_once("_session.html") ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SAIFIT</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/fontawesome.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-notify.min.js"></script>
+    <script src="js/main.js"></script>
     <script>
+        var userData = JSON.parse(sessionStorage.getItem("userData"));
+        if (userData == null) location.href = "login.php";
+
         var objday = [
             "Sunday",
             "Monday",
@@ -24,7 +36,31 @@
 <body>
     <div id="wrapper">
         <div id="content-wrapper" class="content-wrapper">
-            <?php require_once("_navbar.html"); ?>
+            <nav class="navbar navbar-expand bg-white topbar fixed-top shadow">
+                <div>
+                    <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
+                    <p class="m-0">Your Sadhana Tracker </p>
+                </div>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-circle fa-2x"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item">
+                                <script>
+                                    document.write(userData.first_name);
+                                </script>
+                            </a>
+                            <hr>
+                            <a class="dropdown-item" href="login.php">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
             <div id="content" class="content">
                 <div class="container-fluid">
                     <div class="head-title my-2">
@@ -41,17 +77,17 @@
                         <script>
                             document.write(daystring);
                         </script>
-                    </button>                  
+                    </button>
                     <div class="row mt-4">
                         <div class="col-12">
                             <div class="card border-primary shadow h-100">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                        <img class="img-fluid" src="img/wining.gif" alt="">
+                                            <img class="img-fluid" src="img/wining.gif" alt="">
 
-                                            <div class="font-weight-bold text-center mt-2" >
-                                            Your Total Score is: <span class="text-success font-weight-bold h3" id="lblscore"></span>
+                                            <div class="font-weight-bold text-center mt-2">
+                                                Your Total Score is: <span class="text-success font-weight-bold h3" id="lblscore"></span>
 
                                             </div>
                                         </div>
@@ -71,7 +107,26 @@
                 </div>
             </div>
         </div>
-        <?php require_once("_footer.html"); ?>
+        <footer>
+            <div class="bottom-bar shadow">
+                <div class="row">
+                    <div class="col text-center">
+                        <button class="btn btn-primary btn-block" id="navprofile" onclick="location.href='profile.php'">Profile</button>
+                    </div>
+                    <div class="col text-center">
+                        <button class="btn btn-primary btn-block" id="navhome" onclick="location.href='home.php'">Home</button>
+                    </div>
+                    <div class="col text-center">
+                        <button class="btn btn-primary btn-block" id="navgoal" onclick="location.href='goal.php'">Goals</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loader" id="loader">
+                <div class="overlay"></div>
+                <i class="fa fa-spinner fa-pulse fa-3x text-primary"></i>
+            </div>
+        </footer>
     </div>
 
     <script>
