@@ -13,33 +13,20 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-notify.min.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        var userData = JSON.parse(sessionStorage.getItem("userData"));
-        if (userData == null) location.href = "login.php";
+    <script src="js/session.js"></script>
 
-        var objday = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-        ];
-        var mdate = new Date();
-        var dateString = mdate.getUTCFullYear() + "-" + (mdate.getUTCMonth() + 1) + "-" + mdate.getUTCDate();
-        var daystring = objday[mdate.getUTCDay()];
-    </script>
 </head>
 
 <body>
     <div id="wrapper">
         <div id="content-wrapper" class="content-wrapper">
             <nav class="navbar navbar-expand bg-white topbar fixed-top shadow">
-                <div>
-                    <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
-                    <p class="m-0">Your Sadhana Tracker </p>
+                <div class="logo-brand">
+                    <img class="img-logo" src="img/logo-small.png" alt="logo">
+                    <div class="logo-title">
+                        <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
+                        <p class="m-0">Your Sadhana Tracker </p>
+                    </div>
                 </div>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow">
@@ -53,7 +40,7 @@
                                 </script>
                             </a>
                             <hr>
-                            <a class="dropdown-item" href="login.php">
+                            <a class="dropdown-item" href="login.html">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
@@ -101,23 +88,30 @@
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                             </div>
-
                         </div>
                     </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <a class="btn btn-warning btn-block" href="share.html">Share <i class="fa fa-share"></i> </a>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
         <footer>
             <div class="bottom-bar shadow">
                 <div class="row">
                     <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navprofile" onclick="location.href='profile.php'">Profile</button>
+                        <button class="btn btn-primary btn-block" id="navprofile" onclick="location.href='profile.html'">Profile</button>
                     </div>
                     <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navhome" onclick="location.href='home.php'">Home</button>
+                        <button class="btn btn-primary btn-block" id="navhome" onclick="location.href='home.html'">Home</button>
                     </div>
                     <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navgoal" onclick="location.href='goal.php'">Goals</button>
+                        <button class="btn btn-primary btn-block" id="navgoal" onclick="location.href='goal.html'">Goals</button>
                     </div>
                 </div>
             </div>

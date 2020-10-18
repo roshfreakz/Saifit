@@ -138,6 +138,15 @@
   margin: 10px;
 }
 
-.clr{
-  clear: both;
+.logo-brand{
+  display: flex;
 }
+
+.img-logo{
+  width: 50px;
+}
+
+.logo-title{
+  margin-left:10px;
+}
+

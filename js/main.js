@@ -23,3 +23,17 @@ function showNotify(msg, type) {
       '</div>'
   });
 }
+
+var objday = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+];
+var mdate = new Date();
+var dateString = mdate.getUTCFullYear() + "-" + (mdate.getUTCMonth() + 1) + "-" + mdate.getUTCDate();
+var daystring = objday[mdate.getUTCDay()];

@@ -13,33 +13,35 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-notify.min.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        var userData = JSON.parse(sessionStorage.getItem("userData"));
-        if (userData == null) location.href = "login.php";
-    </script>
+    <script src="js/session.js"></script>
 </head>
 
 <body>
     <div id="wrapper">
         <div id="content-wrapper" class="content-wrapper">
             <nav class="navbar navbar-expand bg-white topbar fixed-top shadow">
-                <div>
-                    <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
-                    <p class="m-0">Your Sadhana Tracker </p>
+                <div class="logo-brand">
+                    <img class="img-logo" src="img/logo-small.png" alt="logo">
+                    <div class="logo-title">
+                        <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
+                        <p class="m-0">Your Sadhana Tracker </p>
+                    </div>
                 </div>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user-circle fa-2x"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
                             <a class="dropdown-item">
                                 <script>
                                     document.write(userData.first_name);
                                 </script>
                             </a>
                             <hr>
-                            <a class="dropdown-item" href="login.php">
+                            <a class="dropdown-item" href="login.html">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
@@ -59,7 +61,8 @@
                             <p>No Sadhanas Selected! <br> Please select your sadhanas from the profile tab!</p>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-block" onclick="DoCompleteSadhana()" id="btnCompleteSubmit" disabled>Done for the Day! </button>
+                    <button class="btn btn-success btn-block" onclick="DoCompleteSadhana()" id="btnCompleteSubmit"
+                        disabled>Done for the Day! </button>
                 </div>
             </div>
         </div>
@@ -67,13 +70,16 @@
             <div class="bottom-bar shadow">
                 <div class="row">
                     <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navprofile" onclick="location.href='profile.php'">Profile</button>
+                        <button class="btn btn-primary btn-block" id="navprofile"
+                            onclick="location.href='profile.html'">Profile</button>
                     </div>
                     <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navhome" onclick="location.href='home.php'">Home</button>
+                        <button class="btn btn-primary btn-block" id="navhome"
+                            onclick="location.href='home.html'">Home</button>
                     </div>
                     <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navgoal" onclick="location.href='goal.php'">Goals</button>
+                        <button class="btn btn-primary btn-block" id="navgoal"
+                            onclick="location.href='goal.html'">Goals</button>
                     </div>
                 </div>
             </div>
@@ -86,7 +92,7 @@
     </div>
 
     <script>
-        $(function() {
+        $(function () {
             GetSadhanas();
             $('#navhome').removeClass('btn-primary').addClass('btn-warning');
         });
@@ -97,16 +103,16 @@
                 method: 'GET',
                 dataType: 'json',
                 beforeSend: ShowLoadingFn
-            }).done(function(result) {
+            }).done(function (result) {
                 var jsonSadhana = result.result.data;
                 if (jsonSadhana.length > 0) {
                     BindSadhana(jsonSadhana);
                 } else {
-                    location.href = "profile.php";
+                    location.href = "profile.html";
                 }
-            }).always(function() {
+            }).always(function () {
                 HideLoadingFn();
-            }).fail(function(result) {
+            }).fail(function (result) {
                 var err = JSON.parse(result.responseText);
                 showNotify(err.result.message, 'danger');
             });
@@ -116,7 +122,8 @@
             var dhtml = '';
             for (let i = 0; i < data.length; i++) {
                 dhtml += ' <div class="col-12 mb-3">';
-                dhtml += ' <div class="card shadow" data-sadhana="' + data[i].sadhana_id + '" data-category="' + data[i].category_id + '" onclick="DoActiveSadhana(this)">';
+                dhtml += ' <div class="card shadow" data-sadhana="' + data[i].sadhana_id + '" data-category="' + data[i]
+                    .category_id + '" onclick="DoActiveSadhana(this)">';
                 dhtml += ' <div class="card-body">';
                 dhtml += ' <h5 class="text-center textholder">' + data[i].sadhana + '</h5>';
                 dhtml += ' </div>';
@@ -159,14 +166,14 @@
                 dataType: 'json',
                 data: datastr,
                 beforeSend: ShowLoadingFn
-            }).done(function(result) {
+            }).done(function (result) {
                 var resdata = result.result.data;
                 console.log(resdata);
                 showNotify("Your Sadhanas has been successfully Completed!", 'success');
                 $('#btnCompleteSubmit').prop('disabled', false);
-            }).always(function() {
+            }).always(function () {
                 HideLoadingFn();
-            }).fail(function(result) {
+            }).fail(function (result) {
                 var err = JSON.parse(result.responseText);
                 showNotify(err.result.message, 'danger');
             });
@@ -180,13 +187,13 @@
                 dataType: 'json',
                 data: datastr,
                 beforeSend: ShowLoadingFn
-            }).done(function(result) {
+            }).done(function (result) {
                 var resdata = result.result.data;
                 console.log(resdata);
                 showNotify("Your Sadhanas has been successfully Uncompleted!", 'success');
-            }).always(function() {
+            }).always(function () {
                 HideLoadingFn();
-            }).fail(function(result) {
+            }).fail(function (result) {
                 var err = JSON.parse(result.responseText);
                 showNotify(err.result.message, 'danger');
             });
@@ -206,14 +213,14 @@
                     track_date: dateString
                 },
                 beforeSend: ShowLoadingFn
-            }).done(function(result) {
+            }).done(function (result) {
                 var resdata = result.result.data;
                 console.log(resdata);
                 showNotify("Your have completed your day!", 'success');
-                location.href = "goal.php";
-            }).always(function() {
+                location.href = "goal.html";
+            }).always(function () {
                 HideLoadingFn();
-            }).fail(function(result) {
+            }).fail(function (result) {
                 var err = JSON.parse(result.responseText);
                 showNotify(err.result.message, 'danger');
             });

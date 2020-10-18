@@ -17,12 +17,18 @@
 
 <body class="bg-gradient-primary">
   <div class="container">
-    <div class="row justify-content-center" id="divLogin">
+    <div class="row my-5" id="divLogin">
       <div class="col-lg-6 col-md-12">
-        <div class="card shadow my-5">
+        <div class="card shadow">
           <div class="card-body">
-            <div class="text-center">
-              <h1 class="text-primary mb-2">SAIFIT</h1>
+            <div class="logo-brand">
+              <img class="img-logo" src="img/logo-small.png" alt="logo">
+              <div class="logo-title">
+                <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
+                <p class="m-0">Your Sadhana Tracker </p>
+              </div>
+            </div>
+            <div class="text-center mt-4">
               <h1 class="h4 text-gray-900 mb-2">Login</h1>
             </div>
             <form id="formLogin" action="index.html" method="POST">
@@ -34,7 +40,8 @@
                 <label class="label-control">Password</label>
                 <input type="password" class="form-control" name="password" required>
               </div>
-              <button type="submit" class="btn btn-primary btn-user btn-block my-4"> Login <i class="fas fa-sign-in-alt"></i> </button>
+              <button type="submit" class="btn btn-primary btn-user btn-block my-4"> Login <i
+                  class="fas fa-sign-in-alt"></i> </button>
             </form>
             <hr>
             <div class="text-center">
@@ -52,9 +59,15 @@
       <div class="col-lg-6 col-md-12">
         <div class="card shadow my-5">
           <div class="card-body">
-            <div class="text-center">
-              <h1 class="text-primary mb-2">SAIFIT</h1>
-              <h1 class="h4 text-gray-900 mb-2">Create an Account!</h1>
+            <div class="logo-brand">
+              <img class="img-logo" src="img/logo-small.png" alt="logo">
+              <div class="logo-title">
+                <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
+                <p class="m-0">Your Sadhana Tracker </p>
+              </div>
+            </div>
+            <div class="text-center mt-4">
+              <h1 class="h4 text-gray-900 mb-2">Register</h1>
             </div>
             <form id="formRegister">
               <div class="form-group">
@@ -115,7 +128,8 @@
             <form id="divForgot">
               <div class="form-group">
                 <label class="label-control" for="inpForEmail">Email</label>
-                <input type="email" class="form-control" id="inpForEmail" name="inpForEmail" placeholder="Your Email" required>
+                <input type="email" class="form-control" id="inpForEmail" name="inpForEmail" placeholder="Your Email"
+                  required>
               </div>
               <button type="submit" class="btn btn-primary btn-user btn-block my-4">
                 Submit <i class="fas fa-paper-plane"></i>
@@ -151,19 +165,19 @@
       }
     }
 
-    $(function() {
+    $(function () {
 
       sessionStorage.clear();
 
       HideLoadingFn();
 
-      $('#formRegister').on('submit', function(e) {
+      $('#formRegister').on('submit', function (e) {
         e.preventDefault();
         var formData = $(this).serializeArray();
         AddRegister(formData);
       })
 
-      $('#formLogin').on('submit', function(e) {
+      $('#formLogin').on('submit', function (e) {
         e.preventDefault();
         var formData = $(this).serializeArray();
         CheckLogin(formData);
@@ -178,19 +192,19 @@
           data: formData,
           beforeSend: ShowLoadingFn
         })
-        .done(function(data) {
+        .done(function (data) {
           showNotify(data.result.message, 'success');
           console.log(data.result.data);
           var userData = data.result.data;
           window.sessionStorage;
           sessionStorage.setItem("userData", JSON.stringify(userData));
-          location.href = "home.php";
-      
+          location.href = "home.html";
+
         })
-        .always(function() {
+        .always(function () {
           HideLoadingFn();
         })
-        .fail(function(result) {
+        .fail(function (result) {
           var err = JSON.parse(result.responseText);
           showNotify(err.result.message, 'danger');
         });
@@ -205,14 +219,14 @@
           data: formData,
           beforeSend: ShowLoadingFn
         })
-        .done(function(data) {
+        .done(function (data) {
           showNotify(data.result.message, 'success');
           ToggleScreen('login');
         })
-        .always(function() {
+        .always(function () {
           HideLoadingFn();
         })
-        .fail(function(result) {
+        .fail(function (result) {
           var err = JSON.parse(result.responseText);
           showNotify(err.result.message, 'danger');
         });
