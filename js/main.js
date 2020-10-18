@@ -17,10 +17,6 @@ function showNotify(msg, type) {
   }, {
     type: type,
     allow_dismiss: true,
-    placement: {
-      from: "bottom",
-      align: 'left'
-    },
     template: '<div data-notify="container" class="notify alert alert-{0}" role="alert">' +
       '<span data-notify="title">{1}</span>' +
       '<span data-notify="message">{2}</span>' +
