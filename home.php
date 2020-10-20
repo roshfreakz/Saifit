@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>   
+<head>
     <?php require_once("_header.html") ?>
+    <script src="js/session.js"></script>
 </head>
 
 <body>
     <div id="wrapper">
         <div id="content-wrapper" class="content-wrapper">
-   
+
             <?php require_once("_navbar.html") ?>
 
             <div id="content" class="content">
@@ -23,17 +24,17 @@
                             <p>No Sadhanas Selected! <br> Please select your sadhanas from the profile tab!</p>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-block" onclick="DoCompleteSadhana()" id="btnCompleteSubmit"
-                        disabled>Done for the Day! </button>
+                    <button class="btn btn-success btn-block" onclick="DoCompleteSadhana()" id="btnCompleteSubmit" disabled>Done for the Day! </button>
                 </div>
             </div>
         </div>
 
         <?php require_once("_footer.html") ?>
-       
+
     </div>
 
-   
+    <script src="js/home.js"></script>
+
 </body>
 
 </html>

@@ -2,59 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SAIFIT</title>
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/fontawesome.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-notify.min.js"></script>
-    <script src="js/main.js"></script>
+    <?php require_once("_header.html") ?>
     <script src="js/session.js"></script>
-
 </head>
 
 <body>
     <div id="wrapper">
         <div id="content-wrapper" class="content-wrapper">
-            <nav class="navbar navbar-expand bg-white topbar fixed-top shadow">
-                <div class="logo-brand">
-                    <img class="img-logo" src="img/logo-small.png" alt="logo">
-                    <div class="logo-title">
-                        <h4 class="font-weight-bold text-primary text-uppercase m-0">SAIFIT</h4>
-                        <p class="m-0">Your Sadhana Tracker </p>
-                    </div>
-                </div>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user-circle fa-2x"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item">
-                                <script>
-                                    document.write(userData.first_name);
-                                </script>
-                            </a>
-                            <hr>
-                            <a class="dropdown-item" href="login.html">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+            <?php require_once("_navbar.html") ?>
+
             <div id="content" class="content">
                 <div class="container-fluid">
                     <div class="head-title my-2">
                         <button class="btn btn-primary mr-3"><i class="fa fa-chart-line"></i></button>
                         <h1 class="h5 mb-0 text-gray-800">Goals</h1>
                     </div>
-                    <p>Sairam! Track your progress here</p>
+                    <p class="mb-2">Sairam! Track your progress here</p>
                     <button class="btn btn-outline-warning">
                         <script>
                             document.write(dateString);
@@ -65,17 +28,15 @@
                             document.write(daystring);
                         </script>
                     </button>
-                    <div class="row mt-4">
+                    <div class="row mt-3">
                         <div class="col-12">
                             <div class="card border-primary shadow h-100">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <img class="img-fluid" src="img/wining.gif" alt="">
-
                                             <div class="font-weight-bold text-center mt-2">
                                                 Your Total Score is: <span class="text-success font-weight-bold h3" id="lblscore"></span>
-
                                             </div>
                                         </div>
                                     </div>
@@ -83,44 +44,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
+                    <div class="row mt-2">
                         <div class="col">
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
+                    <div class="row mt-3">
                         <div class="col">
-                            <a class="btn btn-warning btn-block" href="share.html">Share <i class="fa fa-share"></i> </a>
+                            <a class="btn btn-warning btn-block" href="share.php">Share <i class="fa fa-share"></i> </a>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-        <footer>
-            <div class="bottom-bar shadow">
-                <div class="row">
-                    <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navprofile" onclick="location.href='profile.html'">Profile</button>
-                    </div>
-                    <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navhome" onclick="location.href='home.html'">Home</button>
-                    </div>
-                    <div class="col text-center">
-                        <button class="btn btn-primary btn-block" id="navgoal" onclick="location.href='goal.html'">Goals</button>
-                    </div>
-                </div>
-            </div>
 
-            <div class="loader" id="loader">
-                <div class="overlay"></div>
-                <i class="fa fa-spinner fa-pulse fa-3x text-primary"></i>
-            </div>
-        </footer>
+        <?php require_once("_footer.html") ?>
+
     </div>
 
     <script>

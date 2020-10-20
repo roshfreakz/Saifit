@@ -23,7 +23,7 @@
 
 
 .content-wrapper .content {
-  padding: 100px 0px;
+  padding: 80px 0px;
 }
 
 /* Menu */
@@ -46,7 +46,7 @@
 
 .bottom-bar a{
   display: block;
-  padding: 15px;
+  padding: 5px;
   border-right: 1px solid;
 }
 

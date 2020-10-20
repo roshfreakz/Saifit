@@ -2,17 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>SAIFIT - Login</title>
-  <link href="css/main.css" rel="stylesheet">
-  <link href="css/fontawesome.min.css" rel="stylesheet">
-  <link href="css/custom.css" rel="stylesheet">
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/bootstrap-notify.min.js"></script>
-  <script src="js/main.js"></script>
+  <?php require_once("_header.html") ?>
 </head>
 
 <body class="bg-gradient-primary">
@@ -40,8 +30,7 @@
                 <label class="label-control">Password</label>
                 <input type="password" class="form-control" name="password" required>
               </div>
-              <button type="submit" class="btn btn-primary btn-user btn-block my-4"> Login <i
-                  class="fas fa-sign-in-alt"></i> </button>
+              <button type="submit" class="btn btn-primary btn-user btn-block my-4"> Login <i class="fas fa-sign-in-alt"></i> </button>
             </form>
             <hr>
             <div class="text-center">
@@ -128,8 +117,7 @@
             <form id="divForgot">
               <div class="form-group">
                 <label class="label-control" for="inpForEmail">Email</label>
-                <input type="email" class="form-control" id="inpForEmail" name="inpForEmail" placeholder="Your Email"
-                  required>
+                <input type="email" class="form-control" id="inpForEmail" name="inpForEmail" placeholder="Your Email" required>
               </div>
               <button type="submit" class="btn btn-primary btn-user btn-block my-4">
                 Submit <i class="fas fa-paper-plane"></i>
@@ -149,90 +137,9 @@
     <div class="overlay"></div>
     <i class="fa fa-spinner fa-pulse fa-3x text-primary"></i>
   </div>
+ 
+  <script src="js/login.js"></script>
 
-  <script>
-    var userData = JSON.parse(localStorage.getItem("userData"));
-    console.log(userData);
-    if (userData != null) location.href = "home.php";
-
-    function ToggleScreen(arg) {
-      $('.form-control').val('');
-      $('#divRegister').hide();
-      $('#divForgot').hide();
-      $('#divLogin').hide();
-      if (arg == "register") {
-        $('#divRegister').show();
-      } else if (arg == "forgot") {
-        $('#divForgot').show();
-      } else {
-        $('#divLogin').show();
-      }
-    }
-
-    $(function () {
-
-      HideLoadingFn();
-
-      $('#formRegister').on('submit', function (e) {
-        e.preventDefault();
-        var formData = $(this).serializeArray();
-        AddRegister(formData);
-      })
-
-      $('#formLogin').on('submit', function (e) {
-        e.preventDefault();
-        var formData = $(this).serializeArray();
-        CheckLogin(formData);
-      })
-    });
-
-    function CheckLogin(formData) {
-      return $.ajax({
-          url: 'http://35.193.31.55/api/v1/user/login',
-          method: 'POST',
-          dataType: 'json',
-          data: formData,
-          beforeSend: ShowLoadingFn
-        })
-        .done(function (data) {
-          showNotify(data.result.message, 'success');
-          console.log(data.result.data);
-          var userData = data.result.data;
-          localStorage.setItem("userData", JSON.stringify(userData));
-          location.href = "home.php";
-
-        })
-        .always(function () {
-          HideLoadingFn();
-        })
-        .fail(function (result) {
-          var err = JSON.parse(result.responseText);
-          showNotify(err.result.message, 'danger');
-        });
-    }
-
-
-    function AddRegister(formData) {
-      return $.ajax({
-          url: 'http://35.193.31.55/api/v1/user/register',
-          method: 'POST',
-          dataType: 'json',
-          data: formData,
-          beforeSend: ShowLoadingFn
-        })
-        .done(function (data) {
-          showNotify(data.result.message, 'success');
-          ToggleScreen('login');
-        })
-        .always(function () {
-          HideLoadingFn();
-        })
-        .fail(function (result) {
-          var err = JSON.parse(result.responseText);
-          showNotify(err.result.message, 'danger');
-        });
-    }
-  </script>
 </body>
 
 </html>
