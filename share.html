@@ -72,7 +72,9 @@
                                                 </div>
                                             </div>
                                             <img class="img-fluid mt-4" src="img/sai2.jpg" alt="">
-                                            <p class="mt-2">Bangaru, your Sadhana day is Good! </p>
+                                            <p class="mt-2">Bangaru, your Sadhana today is Excellent 🙏🏼 <br>
+                                                Samastha Lokah Sukhino Bhavantu <br>
+                                                May All the Beings in All the Worlds Be Happy </p>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +82,7 @@
                         </div>
                     </div>
                     <div class="row mt-4">
-                        <div class="col text-center">
+                        <div class="col text-center d-none">
                             <a class="btn btn-success" id="whatsapp" target="_blank"> <i class="fab fa-whatsapp"></i>
                             </a>
                             <a class="btn btn-primary" id="facebook" target="_blank"> <i class="fab fa-facebook"></i>
@@ -118,7 +120,14 @@
                 $("#facebook").attr("href", "https://facebook.com");
                 $("#instagram").attr("href", "https://instgram.com");
                 $("#twitter").attr("href", "https://twitter.com");
-               
+
+            });
+
+            html2canvas(document.querySelector("#capture"), {
+                onrendered: function (canvas) {
+                    var img = canvas.toDataURL()
+                    window.open(img);
+                }
             });
 
         });
