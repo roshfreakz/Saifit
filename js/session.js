@@ -1,2 +1,2 @@
-var userData = JSON.parse(sessionStorage.getItem("userData"));
+var userData = JSON.parse(localStorage.getItem("userData"));
 if (userData == null) location.href = "login.html";

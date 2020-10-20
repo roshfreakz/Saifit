@@ -45,7 +45,7 @@
             </form>
             <hr>
             <div class="text-center">
-              <!-- <a class="small" href="#" onclick="ToggleScreen('forgot')">Forgot Password?</a> -->
+              <a class="small" href="#" onclick="ToggleScreen('forgot')">Forgot Password?</a>
             </div>
             <div class="text-center mt-3">
               Not an Existing User? <a href="#" onclick="ToggleScreen('register')">Register</a>
@@ -151,6 +151,10 @@
   </div>
 
   <script>
+    var userData = JSON.parse(localStorage.getItem("userData"));
+    console.log(userData);
+    if (userData != null) location.href = "home.php";
+
     function ToggleScreen(arg) {
       $('.form-control').val('');
       $('#divRegister').hide();
@@ -166,8 +170,6 @@
     }
 
     $(function () {
-
-      sessionStorage.clear();
 
       HideLoadingFn();
 
@@ -196,9 +198,8 @@
           showNotify(data.result.message, 'success');
           console.log(data.result.data);
           var userData = data.result.data;
-          window.sessionStorage;
-          sessionStorage.setItem("userData", JSON.stringify(userData));
-          location.href = "home.html";
+          localStorage.setItem("userData", JSON.stringify(userData));
+          location.href = "home.php";
 
         })
         .always(function () {
