@@ -14,7 +14,7 @@ function GetSadhanas() {
         if (jsonSadhana.length > 0) {
             BindSadhana(jsonSadhana);
         } else {
-            location.href = "profile.html";
+            location.href = "profile.php";
         }
     }).always(function () {
         HideLoadingFn();
@@ -28,7 +28,7 @@ function BindSadhana(data) {
     var dhtml = '';
     for (let i = 0; i < data.length; i++) {
         dhtml += ' <div class="col-12 mb-3">';
-        dhtml += ' <div class="card shadow" data-sadhana="' + data[i].sadhana_id + '" data-category="' + data[i]
+        dhtml += ' <div class="card shadow" id="'+data[i].sadhana_id +'" data-sadhana="' + data[i].sadhana_id + '" data-category="' + data[i]
             .category_id + '" onclick="DoActiveSadhana(this)">';
         dhtml += ' <div class="card-body">';
         dhtml += ' <h5 class="text-center textholder">' + data[i].sadhana + '</h5>';
@@ -37,6 +37,7 @@ function BindSadhana(data) {
         dhtml += ' </div> ';
     }
     $('#divSadhana').html(dhtml);
+    GetTrackedSadhanas() ;
 }
 
 
@@ -65,6 +66,30 @@ function DoActiveSadhana(arg) {
     }
 }
 
+function GetTrackedSadhanas() {
+    $.ajax({
+        url: domain + 'api/v1/user-sadhana-track',
+        method: 'GET',
+        dataType: 'json',
+        data: {
+            user_id: userData.user_id,
+            track_date: dateString
+        },
+        beforeSend: ShowLoadingFn
+    }).done(function(result) {
+        var jsonResult = result.result.data.sadhana;
+        console.log(jsonResult)
+        for (let i = 0; i < jsonResult.length; i++) {
+            $('#' + jsonResult[i].sadhana_id).addClass("active");
+        }
+    }).always(function() {
+        HideLoadingFn();
+    }).fail(function(result) {
+        var err = JSON.parse(result.responseText);
+        showNotify(err.result.message, 'danger');
+    });
+}
+
 function DoTrackSadhana(datastr) {
     $.ajax({
         url: domain + 'api/v1/user-sadhana-track/map',
@@ -75,7 +100,7 @@ function DoTrackSadhana(datastr) {
     }).done(function (result) {
         var resdata = result.result.data;
         console.log(resdata);
-        showNotify("Your Sadhanas has been successfully Completed!", 'success');
+        showNotify("Your Sadhana has been successfully Completed!", 'success');
         $('#btnCompleteSubmit').prop('disabled', false);
     }).always(function () {
         HideLoadingFn();
@@ -96,7 +121,7 @@ function DoUnTrackSadhana(datastr) {
     }).done(function (result) {
         var resdata = result.result.data;
         console.log(resdata);
-        showNotify("Your Sadhanas has been successfully Uncompleted!", 'success');
+        showNotify("Selected Sadhana has been Reverted!", 'warning');
     }).always(function () {
         HideLoadingFn();
     }).fail(function (result) {
@@ -123,7 +148,7 @@ function DoCompleteSadhana() {
         var resdata = result.result.data;
         console.log(resdata);
         showNotify("Your have completed your day!", 'success');
-        location.href = "goal.html";
+        location.href = "goal.php";
     }).always(function () {
         HideLoadingFn();
     }).fail(function (result) {

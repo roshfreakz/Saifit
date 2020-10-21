@@ -82,7 +82,7 @@
                 beforeSend: ShowLoadingFn
             }).done(function(result) {
                 var jsonData = result.result.data;
-                console.log(jsonData)
+              
                 $('#lblscore').text(jsonData.totalRank);
             }).always(function() {
                 HideLoadingFn();

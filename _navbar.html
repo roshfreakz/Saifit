@@ -8,25 +8,31 @@
     </div>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user-circle fa-2x"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="userDropdown">
-                <a class="dropdown-item">
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item text-success h5">
                     <script>
-                        document.write(userData.first_name);
+                        document.write(userData.first_name + " " + userData.last_name);
                     </script>
                 </a>
-                <hr>
-                <a class="dropdown-item" href="help.html">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Help?
+                <hr class="m-0">
+                <a class="dropdown-item" href="about.php">
+                    <i class="fas fa-users fa-sm fa-fw mr-2 text-primary-400"></i>
+                    About
                 </a>
-                <hr>
+                <a class="dropdown-item" href="help.html">
+                    <i class="fas fa-question fa-sm fa-fw mr-2 text-primary-400"></i>
+                    Need Help
+                </a>
+                <a class="dropdown-item" href="changepassword.php">
+                    <i class="fas fa-lock fa-sm fa-fw mr-2 text-primary-400"></i>
+                    Change Password
+                </a>
                 <a class="dropdown-item" href="logout.html">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-primary-400"></i>
                     Logout
                 </a>
             </div>

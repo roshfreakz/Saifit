@@ -7,6 +7,7 @@
 
 <body class="bg-gradient-primary">
   <div class="container">
+
     <div class="row my-5" id="divLogin">
       <div class="col-lg-6 col-md-12">
         <div class="card shadow">
@@ -114,10 +115,10 @@
               <h1 class="text-primary mb-2">SAIFIT</h1>
               <h1 class="h4 text-gray-900 mb-2">Forgot Password?</h1>
             </div>
-            <form id="divForgot">
+            <form id="forgotPassword">
               <div class="form-group">
-                <label class="label-control" for="inpForEmail">Email</label>
-                <input type="email" class="form-control" id="inpForEmail" name="inpForEmail" placeholder="Your Email" required>
+                <label class="label-control">Email</label>
+                <input type="email" class="form-control" name="email_id" required>
               </div>
               <button type="submit" class="btn btn-primary btn-user btn-block my-4">
                 Submit <i class="fas fa-paper-plane"></i>
@@ -131,13 +132,14 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <div class="loader" id="loader">
     <div class="overlay"></div>
     <i class="fa fa-spinner fa-pulse fa-3x text-primary"></i>
   </div>
- 
+
   <script src="js/login.js"></script>
 
 </body>

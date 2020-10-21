@@ -132,7 +132,6 @@
   width: 95%;
 }
 
-
 .startTitle{
   position: absolute;
   margin: 10px;
@@ -150,3 +149,6 @@
   margin-left:10px;
 }
 
+.dropdown-item{
+  padding: 0.6rem 1rem;
+}
