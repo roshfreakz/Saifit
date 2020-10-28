@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="css/fontawesome.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 </head>
+
 <body>
-    <embed src="img/help.pdf" type="application/pdf" width="800px" height="2100px" />
+    <div class="wrapper container-fluid">
+        <div class="head-title my-2">
+            <a class="btn btn-primary" href="index.html"><i class="fa fa-arrow-left"></i> Back</a>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div id="imglist">
+        
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        for (let i = 1; i <= 18; i++) {
+            var imgPath = "img/help/SCREEN " + i + ".png";
+            var img = document.createElement('img');
+            img.setAttribute('src', imgPath);
+            img.classList.add('help-img');
+            document.getElementById('imglist').append(img);
+        }
+    </script>
 </body>
+
 </html>
