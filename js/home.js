@@ -78,10 +78,11 @@ function GetTrackedSadhanas() {
         beforeSend: ShowLoadingFn
     }).done(function(result) {
         var jsonResult = result.result.data.sadhana;
-        console.log(jsonResult)
+        if(jsonResult.length > 0){
         for (let i = 0; i < jsonResult.length; i++) {
             $('#' + jsonResult[i].sadhana_id).addClass("active");
         }
+    }
     }).always(function() {
         HideLoadingFn();
     }).fail(function(result) {
@@ -100,7 +101,7 @@ function DoTrackSadhana(datastr) {
     }).done(function (result) {
         var resdata = result.result.data;
         console.log(resdata);
-        showNotify("Your Sadhana has been successfully Completed!", 'success');
+        // showNotify("Your Sadhana has been successfully Completed!", 'success');
         $('#btnCompleteSubmit').prop('disabled', false);
     }).always(function () {
         HideLoadingFn();
@@ -121,7 +122,7 @@ function DoUnTrackSadhana(datastr) {
     }).done(function (result) {
         var resdata = result.result.data;
         console.log(resdata);
-        showNotify("Selected Sadhana has been Reverted!", 'warning');
+        // showNotify("Selected Sadhana has been Reverted!", 'warning');
     }).always(function () {
         HideLoadingFn();
     }).fail(function (result) {

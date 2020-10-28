@@ -132,7 +132,7 @@ function GetUserSelectedSadhana(arg, cate) {
 function SubmitSadhanaData() {
     if (jsonSelectedSadhana.length > 0) MapUserSadhana();
     if (jsonUnselectedSadhana.length > 0) UnMapUserSadhana();
-    showNotify("Your Sadhanas has been successfully updated!", 'success');
+    showNotify("Your Sadhana has been successfully updated!", 'success');
 }
 
 
@@ -153,7 +153,7 @@ function MapUserSadhana() {
     }).fail(function(result) {
         var err = JSON.parse(result.responseText);
         console.log(err.result);
-        showNotify("Please Select Your Sadhanas!", 'danger');
+        showNotify("Please Select Your Sadhana!", 'danger');
     });
 }
 
@@ -174,6 +174,6 @@ function UnMapUserSadhana() {
     }).fail(function(result) {
         var err = JSON.parse(result.responseText);
         console.log(err.result);
-        showNotify("Error in Unselect Your Sadhanas!", 'danger');
+        showNotify("Error in Unselect Your Sadhana!", 'danger');
     });
 }

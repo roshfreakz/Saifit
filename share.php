@@ -33,8 +33,8 @@
                                             <p class="mt-2">Bangaru,
                                                 <br>
                                                 <br> Your Sadhana Miles Today is Excellent! <br>
-                                                Samastha Lokah Sukhino Bhavantu! <br>
-                                                May All Beings in the Worlds be Happy! </p>
+                                                Samastha Lokah Sukhino Bhavantu <br>
+                                                May All The Beings In All The Worlds Be Happy </p>
                                         </div>
                                     </div>
                                 </div>
@@ -45,9 +45,15 @@
                         <div class="col text-center">
                             <a class="btn btn-success" id="whatsapp" target="_blank" href="#"><i class="fab fa-whatsapp"></i></a>
                             <a class="btn btn-primary" id="facebook" target="_blank" href="#"><i class="fab fa-facebook"></i></a>
-                            <!-- <a class="btn btn-danger" id="instagram" target="_blank" href="#"><i class="fab fa-instagram"></i></a> -->
+                            <a class="btn btn-danger" id="instagram" target="_blank" href="#"><i class="fab fa-instagram"></i></a>
                             <a class="btn btn-info" id="twitter" target="_blank" href="#"> <i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-warning" id="download" href="#"> <i class="fa fa-download"></i> </a>
+                            <!-- <a class="btn btn-warning" id="download" href="#"> <i class="fa fa-download"></i> </a> -->
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <span>Click to copy link</span>
+                            <input class="form-control" id="genLink" readonly>
                         </div>
                     </div>
                 </div>
@@ -63,6 +69,7 @@
 
     <script>
         $(function() {
+
             var i = Math.floor((Math.random() * 30) + 1);
             var imgPath = "img/share/sai (" + i + ").png";
             $('#saiimg').attr('src', imgPath);
@@ -92,13 +99,31 @@
         }
 
         function ShareDetails(result) {
-            var file = window.location.hostname +"/img/user/" + result;
-            $("#download").attr("download", result).attr("href", file);
+            var file = "http://" + window.location.hostname + ":" + window.location.port + "/img/user/" + result;
+            $("#genLink").val(file);
             $("#whatsapp").attr("href", "https://api.whatsapp.com/send?text=" + file).attr('data-action', 'share/whatsapp/share');
-            $("#facebook").attr("href", "https://facebook.com/sharer.php?u="+file);
-            // $("#instagram").attr("href", "https://instagram.com");
-            $("#twitter").attr("href", "https://twitter.com/share?url="+file);
+            $("#facebook").attr("href", "https://facebook.com/sharer.php?u=" + file);
+            $("#instagram").attr("href", "https://instagram.com");
+            $("#twitter").attr("href", "https://twitter.com/share?url=" + file);
         }
+
+
+
+        $("#genLink").on('click', function(e){
+            var textArea = document.createElement("textarea");
+            textArea.value = this.value;
+            document.body.appendChild(textArea);
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Copying text command was ' + msg);
+            } catch (err) {
+                console.log('Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        });
     </script>
 </body>
 
