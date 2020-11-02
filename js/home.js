@@ -28,7 +28,7 @@ function BindSadhana(data) {
     var dhtml = '';
     for (let i = 0; i < data.length; i++) {
         dhtml += ' <div class="col-12 mb-3">';
-        dhtml += ' <div class="card shadow" id="'+data[i].sadhana_id +'" data-sadhana="' + data[i].sadhana_id + '" data-category="' + data[i]
+        dhtml += ' <div class="card shadow" id="' + data[i].sadhana_id + '" data-sadhana="' + data[i].sadhana_id + '" data-category="' + data[i]
             .category_id + '" onclick="DoActiveSadhana(this)">';
         dhtml += ' <div class="card-body">';
         dhtml += ' <h5 class="text-center textholder">' + data[i].sadhana + '</h5>';
@@ -37,7 +37,7 @@ function BindSadhana(data) {
         dhtml += ' </div> ';
     }
     $('#divSadhana').html(dhtml);
-    GetTrackedSadhanas() ;
+    GetTrackedSadhanas();
 }
 
 
@@ -76,16 +76,17 @@ function GetTrackedSadhanas() {
             track_date: dateString
         },
         beforeSend: ShowLoadingFn
-    }).done(function(result) {
+    }).done(function (result) {
         var jsonResult = result.result.data.sadhana;
-        if(jsonResult.length > 0){
-        for (let i = 0; i < jsonResult.length; i++) {
-            $('#' + jsonResult[i].sadhana_id).addClass("active");
+        console.log(jsonResult);
+        if (jsonResult.length > 0) {
+            for (let i = 0; i < jsonResult.length; i++) {
+                $('#' + jsonResult[i].sadhana_id).addClass("active");
+            }
         }
-    }
-    }).always(function() {
+    }).always(function () {
         HideLoadingFn();
-    }).fail(function(result) {
+    }).fail(function (result) {
         var err = JSON.parse(result.responseText);
         showNotify(err.result.message, 'danger');
     });

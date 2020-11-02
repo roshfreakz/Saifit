@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <div class="row mt-3 d-none">
                         <div class="col text-center">
                             <a class="btn btn-success" id="whatsapp" target="_blank" href="#"><i class="fab fa-whatsapp"></i></a>
                             <a class="btn btn-primary" id="facebook" target="_blank" href="#"><i class="fab fa-facebook"></i></a>

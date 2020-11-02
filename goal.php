@@ -14,10 +14,10 @@
             <div id="content" class="content">
                 <div class="container-fluid">
                     <div class="head-title my-2">
-                        <button class="btn btn-primary mr-3"><i class="fa fa-chart-line"></i></button>
+                        <button class="btn btn-primary mr-3"><i class="fa fa-trophy"></i></button>
                         <h1 class="h5 mb-0 text-gray-800">Goals</h1>
                     </div>
-                    <p class="mb-2">Sairam! Track your progress here</p>
+                    <p class="mb-2">Sairam! My Achievement Today</p>
                     <button class="btn btn-outline-warning">
                         <script>
                             document.write(dateString);
@@ -44,16 +44,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <!-- <div class="row mt-2">
                         <div class="col">
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mt-3">
                         <div class="col">
                             <a class="btn btn-warning btn-block" href="share.php">Share <i class="fa fa-share"></i> </a>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <a class="btn btn-info btn-block" href="progress.php">Track My Progress </a>
                         </div>
                     </div>
                 </div>
