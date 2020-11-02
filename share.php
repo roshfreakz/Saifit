@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3 d-none">
+                    <div class="row mt-3">
                         <div class="col text-center">
                             <a class="btn btn-success" id="whatsapp" target="_blank" href="#"><i class="fab fa-whatsapp"></i></a>
                             <a class="btn btn-primary" id="facebook" target="_blank" href="#"><i class="fab fa-facebook"></i></a>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col">
-                            <span>Click to copy link</span>
+                            <span id="lblCopy">Click to copy link</span>
                             <input class="form-control" id="genLink" readonly>
                         </div>
                     </div>
@@ -114,9 +114,9 @@
             textArea.value = this.value;
             document.body.appendChild(textArea);
             textArea.select();
-
             try {
                 var successful = document.execCommand('copy');
+                $('#lblCopy').text('Link Copied!');
                 var msg = successful ? 'successful' : 'unsuccessful';
                 console.log('Copying text command was ' + msg);
             } catch (err) {
